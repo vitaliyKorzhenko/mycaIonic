@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/jsLibs/themes/default/easyui.css">
+<link rel="stylesheet" href="/jsLibs/themes/icon.css">
+<!--<link rel="stylesheet"  href="'/jsLibs/demo/demo.css">-->
+<script src="/javascripts/admin.js"></script>
+<script src="/jsLibs/jquery.min.js"></script>
+<script src="/jsLibs/jquery.easyui.min.js"></script>
+
+<div style="margin:20px 0;"></div>
+<div class="easyui-layout" style="width:100%;height:100%">
+
+
+    <table id="dgInstitution" title="Категории" class="easyui-datagrid" style="width:900px;height:450px"
+           toolbar="#toolbarCategory" pagination="true"
+           rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+        <tr>
+            <th field="name" width="50">Название категории</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="toolbarCategory">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="openCreateCategoryDlg()">Добавить категорию</a>
+    </div>
+</div>
+
+<div id="dlgСategory" class="easyui-dialog" style="width:400px"
+     closed="true" buttons="#dlgCategory-buttons">
+    <form id="fmCreateCategory"  novalidate style="margin:0;padding:20px 50px">
+        <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Заведение</div>
+        <div style="margin-bottom:10px">
+            <input name="name" class="easyui-textbox" required="true" label="Название:" style="width:100%">
+        </div>
+
+    </form>
+</div>
+<div id="dlgCategory-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveCategory()" style="width:90px">Cохранить</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgСategory').dialog('close')" style="width:90px">Отменить</a>
+</div>
