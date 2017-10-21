@@ -33,4 +33,12 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+
+
+//
+// models.User.belongsToMany( models.category, { through: UserProject });
+// models.category.belongsToMany( models.User, { through: UserProject });
+
+
+
 module.exports = db;

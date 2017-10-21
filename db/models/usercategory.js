@@ -1,17 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var category = sequelize.define('category', {
-    name: DataTypes.STRING
+  var UserCategory = sequelize.define('UserCategory', {
+    type: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-
-
       }
     }
   });
-  return category;
+  return UserCategory;
 };
-
-

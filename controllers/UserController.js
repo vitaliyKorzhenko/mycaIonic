@@ -10,10 +10,16 @@ var ErrorFactory  = require('../ErrorFactory');
 //models
 var User = require('../db/models').User;
 
+var Category = require('../db/models').category;
 
 
+var UserCategory = require('../db/models').UserCategory;
 
 function UserController() {
+
+    Category.hasMany(UserCategory);
+    User.hasMany(UserCategory);
+
 }
 
 
@@ -66,6 +72,8 @@ UserController.prototype.login = function (loginInfo) {
 
 
 UserController.prototype.registrationNewUser = function (newUser) {
+
+    console.log("registration new user: " + JSON.stringify(newUser));
 
     // "fistName": "William",
     //     "lastName": "Worner",

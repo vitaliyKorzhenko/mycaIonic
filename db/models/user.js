@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
 
     // "fistName": "William",
@@ -23,8 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+
+
       }
     }
   });
-  return User;
+
+    return User;
 };

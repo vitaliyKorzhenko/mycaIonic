@@ -107,3 +107,59 @@ function saveCategory() {
         }
     });
 }
+
+function loadDefaultCategory() {
+    $.ajax({
+        url: "/admin/category/loadDefaultCategory",
+        method: "POST",
+        data: {load: "true"},
+        statusCode: {
+            200: function(result) {
+                console.log("result loadDefaultCategory" + JSON.stringify(result));
+                //
+            },
+            403: function(error) {
+                console.log("error loadDefaultCategory" + error);
+            }
+        }
+    });
+    return false;
+}
+function ShowAllCategories() {
+    $.ajax({
+        url: "/admin/category/showAllCategories",
+        method: "POST",
+        data: {load: "true"},
+        statusCode: {
+            200: function(result) {
+                console.log("result categories" + JSON.stringify(result));
+                //
+            },
+            403: function(error) {
+                console.log("error load categories" + error);
+            }
+        }
+    });
+    return false;
+}
+
+function SaveDefalultQuestion() {
+    // loadDefaultQuestions
+
+    $.ajax({
+        url: "/admin/category/loadDefaultQuestions",
+        method: "POST",
+        data: {load: "true"},
+        statusCode: {
+            200: function(result) {
+                console.log("result categories" + JSON.stringify(result));
+                //
+            },
+            403: function(error) {
+                console.log("error load categories" + error);
+            }
+        }
+    });
+    return false;
+
+}

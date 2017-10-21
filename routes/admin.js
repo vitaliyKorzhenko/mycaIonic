@@ -5,6 +5,10 @@ var InstitutionController = require('../controllers/InstitutionController');
 
 var CategoryController = require('../controllers/CategoryController');
 
+
+var QuestionController = require('../controllers/QuestionController');
+
+
 // /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.render('admin');
@@ -12,6 +16,53 @@ router.get('/', function(req, res, next) {
 
 router.get('/category', function(req, res, next) {
     res.render('category');
+})
+
+
+router.post('/category/loadDefaultCategory', function (req, res, next) {
+    console.log("load default category");
+    CategoryController.createDefaultCategories().then(function (value) {
+
+            if(value) {
+                res.status(200);
+                res.send(value);
+            }
+        },
+
+        function (err) {
+            res.status(500);
+            res.send(err);
+        })
+
+})
+
+router.post('/category/showAllCategories', function (req, res, next) {
+    console.log("show All Categories");
+
+    CategoryController.returnAllCategories().then(function (value) {
+            if(value) {
+                res.status(200);
+                res.send(value);
+            }
+        },
+        function (err) {
+            res.status(500);
+            res.send(err);
+        })
+})
+
+router.post('/category/loadDefaultQuestions', function (req, res, next) {
+    console.log("load default questions");
+
+    QuestionController.saveDefaultQuestion().then(function (value) {
+        if(value) {
+            res.status(200);
+            res.send(value);
+        }
+    }, function (err) {
+        res.status(500);
+        res.send(err);
+    })
 })
 
 
