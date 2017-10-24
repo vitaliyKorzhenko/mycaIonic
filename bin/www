@@ -46,7 +46,7 @@ var UserController = require('../controllers/UserController');
 
 
 // /{force:true}
-models.sequelize.sync({force:true}).then(function() {
+models.sequelize.sync().then(function() {
 
     // User.hasMany (Category, { joinTableName: 'UserCategory' });
     // Category.hasMany (User, { joinTableName: 'UserCategory' });
@@ -70,8 +70,8 @@ models.sequelize.sync({force:true}).then(function() {
         //
         //     })
 
-        socket.on('userLogin',function (data) {
-            console.log("userLogin Data: " + JSON.stringify(data));
+        socket.on('login',function (data) {
+            console.log("user Login Data: " + JSON.stringify(data));
         })
 
 
