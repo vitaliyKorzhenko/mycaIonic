@@ -1,0 +1,19 @@
+{
+  "ints":[
+    {
+      "name": 'test',
+      "phone": "0434534",
+      "address": 'dsfsdfsdf',
+      "dataAboutWork": "9-30 - 11 M-S",
+      "latitude": '9.43543',
+      "langitude": '9.324234',
+      "menu": ''
+    },
+    {
+
+    },
+    {
+
+    }
+  ]
+}

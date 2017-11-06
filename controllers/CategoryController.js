@@ -25,14 +25,17 @@ CategoryController.prototype.createNewCategory = function (name) {
 
 CategoryController.prototype.createDefaultCategories = function () {
 
-    var arrayCategories = [{name:"Food"},{name:"Burgers"},{name:"Pizza"},{name:"Sushi"},
-        {name:"Breakfast"},
-        {name:"Dinner"},
-        {name:"Lunch"},
-        {name:"Hookah"},
-        {name: "Pub (Gastro)"},
-        {name: "Steaks"},
-        {name: "Desserts"}
+    var arrayCategories = [
+        {name:"Burgers", russianName: 'Бургеры'},
+        {name:"Pizza", russianName: 'Пицца'},
+        {name:"Sushi", russianName: 'Суши'},
+        {name:"Breakfast", russianName: 'Завтрак'},
+        {name:"Dinner", russianName: 'Ужин'},
+        {name:"Lunch", russianName: 'Ланч'},
+        {name:"Hookah", russianName: 'Кальян'},
+        {name: "Gastro Pub", russianName: 'Гастро Паб'},
+        {name: "Steaks", russianName: 'Cтейки'},
+        {name: "Desserts", russianName: 'Десерты'}
     ];
 
 

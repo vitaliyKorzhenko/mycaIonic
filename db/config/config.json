@@ -4,20 +4,32 @@
     "password": "1111",
     "database": "mycaDB",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectOptions": {
+      "charset": "utf8",
+      "collate": "utf8_general_ci"
+    }
   },
   "test": {
     "username": "root",
     "password": "1111",
     "database": "mycaDB",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectOptions": {
+      "charset": "utf8",
+      "collate": "utf8_general_ci"
+    }
   },
   "production": {
     "username": "root",
     "password": "1111",
     "database": "mycaDB",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectOptions": {
+      "charset": "utf8",
+      "collate": "utf8_general_ci"
+    }
   }
 }

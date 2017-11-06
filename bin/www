@@ -19,7 +19,6 @@ var User = require('../db/models').User;
 var Category = require('../db/models').Category;
 
 
-
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -39,28 +38,54 @@ var UserController = require('../controllers/UserController');
  * Listen on provided port, on all network interfaces.
  */
 
+var sequelize_fixtures = require('sequelize-fixtures');
 
+var models = require('../db/models');
 
- var io = require('socket.io')(server);
+// var userJson = require('/user.json');
 
+var io = require('socket.io')(server);
+
+var modelsByFixtures = {
+    Users: require('../db/models').User
+}
+
+var fixtureService = require('../services/fixtureService');
+
+var userFixtures =[
+    {
+        "model": "User",
+        "data": {
+            "firstName": "Vitaliy",
+            "lastName": "Korzhenko",
+            "password": "q1w2e3r4t5y6",
+            "email": "vitaliykorzenkoua@gmail.com",
+            "birthday": "1993-12-16",
+            "gender": "m",
+            "phoneNumber": "+380669947651"
+        }
+    }
+]
 
 
 // /{force:true}
-models.sequelize.sync().then(function() {
+models.sequelize.sync({force:true}).then(function () {
 
     // User.hasMany (Category, { joinTableName: 'UserCategory' });
     // Category.hasMany (User, { joinTableName: 'UserCategory' });
+    var fixtures = fixtureService.createDefaultFixtures();
+    sequelize_fixtures.loadFixtures(fixtures, models).then(function(){
+        // doStuffAfterLoad();
+    });
 
-
-
-    server.listen(3000, function() {
+    server.listen(3000, function () {
         debug('Express server listening on port ' + server.address().port);
     });
 
     server.on('error', onError);
     server.on('listening', onListening);
 
-    io.on('connection', function(socket){
+    io.on('connection', function (socket) {
 
         console.log('a user connected');
         // CategoryController.returnAllCategories().then(function (categories) {
@@ -70,31 +95,28 @@ models.sequelize.sync().then(function() {
         //
         //     })
 
-        socket.on('login',function (data) {
+        socket.on('login', function (data, res) {
             console.log("user Login Data: " + JSON.stringify(data));
+
+            UserController.login(data).then(function (loginResult) {
+                    if (loginResult) {
+                        res({success: true, msg: loginResult});
+                    }
+                },
+                function (reason) {
+                    res({success: false, msg: reason});
+                })
+
         })
-
-
-        // socket.on('createNewUser', function (userLogin) {
-        //     if (userLogin) {
-        //
-        //     }
-        // })
-
-        // socket.on('registerUser', function (userData) {
-        //     if (userData) {
-        //
-        //     }
-        // })
 
         socket.on('getAllCategories', function (data, res) {
             CategoryController.returnAllCategories().then(function (categories) {
-                  if (categories) {
-                      res({success: true, msg:categories});
-                  }
+                    if (categories) {
+                        res({success: true, msg: categories});
+                    }
                 },
                 function (err) {
-                    res({success:true, msg:err});
+                    res({success: true, msg: err});
                 })
         })
 
@@ -115,13 +137,15 @@ models.sequelize.sync().then(function() {
 
         });
 
+        socket.on('saveDefaultSettings', function (settings, callback) {
+            console.log('saveDefault Setting');
+            console.log(JSON.stringify(settings));
+        })
+
     })
 
 
 })
-
-
-
 
 
 /**
@@ -129,19 +153,19 @@ models.sequelize.sync().then(function() {
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+    var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+    if (port >= 0) {
+        // port number
+        return port;
+    }
 
-  return false;
+    return false;
 }
 
 /**
@@ -149,27 +173,27 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
 }
 
 /**
@@ -177,9 +201,9 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
 }

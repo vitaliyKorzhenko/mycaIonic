@@ -1,0 +1,14 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "firstName": "Vitaliy",
+      "lastName": "Korzhenko",
+      "password": "q1w2e3r4t5y6",
+      "email": "vitaliykorzenkoua@gmail.com",
+      "birthday": "1993-12-16",
+      "gender": "m",
+      "phoneNumber": "+380669947651"
+    }
+  }
+]

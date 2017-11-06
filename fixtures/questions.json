@@ -1,0 +1,16 @@
+[
+  {
+    "model": "Foo",
+    "data": {
+      "propA": "bar",
+      "propB": 1
+    }
+  },
+  {
+    "model": "Foo",
+    "data": {
+      "propA": "baz",
+      "propB": 3
+    }
+  }
+]
