@@ -5,8 +5,18 @@ var Category = require('../db/models').category;
 
 // var Category = require()
 
+var CategorySchema = require('../mongoSchema/categorySchema');
+
+
 function  CategoryController() {
 
+}
+
+CategoryController.prototype.createCategory = function () {
+    return new Promise (function (resolve, reject) {
+        var Category = mongoose.model('Category', CategorySchema);
+        var cate
+    })
 }
 
 CategoryController.prototype.createNewCategory = function (name) {

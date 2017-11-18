@@ -180,6 +180,7 @@ function createCategoryFixtures() {
         {name: "Gastro Pub", russianName: 'Гастро Паб'},
         {name: "Steaks", russianName: 'Cтейки'},
         {name: "Desserts", russianName: 'Десерты'}
+        15
     ];
 
 }

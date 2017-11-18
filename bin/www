@@ -133,8 +133,6 @@ models.sequelize.sync({force:true}).then(function () {
             }, function (err) {
                 res({success: false, msg: err});
             })
-
-
         });
 
         socket.on('saveDefaultSettings', function (settings, callback) {
