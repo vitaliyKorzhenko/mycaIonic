@@ -1,0 +1,23 @@
+[{
+  "name" : "Пузатая хата",
+  "russian_name": "",
+  "lat": "49.993312",
+  "lon": "36.232352",
+  "categories": [
+    {"name":"Burgers", "rating": "10"},
+    {"name":"Pizza", "rating": "7"},
+    {"name":"Sushi", "rating": "6"},
+    {"name":"Breakfast", "rating": "7"},
+    {"name":"Dinner", "rating": "7"},
+    {"name":"Lunch", "rating": "7"},
+    {"name":"Hookah", "rating": "7"},
+    {"name": "Gastro Pub", "rating": "3"},
+    {"name": "Steaks", "rating": "4"},
+    {"name": "Desserts", "rating": "5"}
+  ],
+  "address": "Symskaya st 2",
+  "russian_address": "улица сумская 2",
+  "marker": "mSov",
+  "phone": "+38057-766-90-31",
+  "hours": "08-00 - 22-00 All Day"
+}]
